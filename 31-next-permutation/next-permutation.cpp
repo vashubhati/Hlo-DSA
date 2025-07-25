@@ -17,7 +17,7 @@ public:
     if (ind == -1) {
         // reverse the whole array:
         reverse(A.begin(), A.end());
-        return;
+        return ;
   
     }
 
@@ -33,7 +33,7 @@ public:
 
     // Step 3: reverse the right half:
     reverse(A.begin() + ind + 1, A.end());
-
+    
  
   }
 
