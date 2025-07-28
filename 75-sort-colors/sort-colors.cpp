@@ -1,23 +1,24 @@
 class Solution {
 public:
-    void sortColors(vector<int>& arr ) {
-        int cnt0 = 0, cnt1 = 0, cnt2 = 0;
-
-    for (int i = 0; i < arr.size(); i++) {
-        if (arr[i] == 0) cnt0++;
-        else if (arr[i] == 1) cnt1++;
-        else cnt2++;
-    }
-
-    //Replace the places in the original array:
-    for (int i = 0; i < cnt0; i++) arr[i] = 0; // replacing 0's
-
-    for (int i = cnt0; i < cnt0 + cnt1; i++) arr[i] = 1; // replacing 1's
-
-    for (int i = cnt0 + cnt1; i < arr.size(); i++) arr[i] = 2; // replacing 2's
-
-}
-
+    void sortColors(vector<int>& nums) {
+      
+        int n = nums.size();
         
-    
+        int i = 0;   //denotes for 0
+        int j = 0;   //denotes for 1
+        int k = n-1; //denotes for 2
+        
+        while ( j <= k) {
+            if(nums[j] == 1) {
+                j++;
+            } else if(nums[j] == 2) {
+                swap(nums[j], nums[k]);
+                k--;
+            } else { //nums[j] == 0
+                swap(nums[j], nums[i]);
+                i++;
+                j++;
+            }
+        }
+    }
 };
