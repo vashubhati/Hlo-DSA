@@ -1,18 +1,22 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        for(int i = 0;i<nums.length;i++){
-           int count = 0;
-           for(int j = 0;j<nums.length;j++){
-            if(nums[i]==nums[j]){
-                count++;
+        int candidate = nums[0];
+        int count = 1; // We start with first element as candidate
+        
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == candidate) {
+                count++; // same as candidate → add vote
+            } else {
+                count--; // different → remove vote
             }
-           }
-            if(count>nums.length/2){
-                return nums[i];
-            }    
-        
+
+            // If no votes left, choose new candidate
+            if (count == 0) {
+                candidate = nums[i];
+                count = 1;
+            }
         }
-       return -1;
         
+        return candidate; // In given problem, majority always exists
     }
 }
