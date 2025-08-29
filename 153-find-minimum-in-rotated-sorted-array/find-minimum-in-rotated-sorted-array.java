@@ -5,8 +5,7 @@ class Solution {
         int minimum ;
         for(int i=0;i<n;i++){
             if(nums[i]<min){
-                minimum = nums[i];
-                min = Math.min(min,minimum);
+                min = nums[i];
             }
         }
         return min;
