@@ -2,7 +2,7 @@
 SELECT 
     p.product_id,
     ROUND(
-        IFNULL(SUM(u.units * p.price) / NULLIF(SUM(u.units), 0), 0),
+        IFNULL(SUM(u.units * p.price) /SUM(u.units), 0),
         2
     ) AS average_price
 FROM Prices p
