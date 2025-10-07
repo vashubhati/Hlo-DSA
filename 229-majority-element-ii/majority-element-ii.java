@@ -1,32 +1,32 @@
-import java.util.*;
-
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
+
+        int count = 1;
         int n = nums.length;
-        List<Integer> mostel = new ArrayList<>();
+        List<Integer> arr1 = new ArrayList<>();
+        Arrays.sort(nums);
 
-        // Case: if fewer than 3 elements, just return unique ones
-        if (n < 3) {
+        if (n == 0) return arr1;
+        if (n < 3) {  // return unique elements for arrays smaller than 3
             for (int num : nums) {
-                if (!mostel.contains(num)) {
-                    mostel.add(num);
-                }
+                if (!arr1.contains(num))
+                    arr1.add(num);
             }
-            return mostel;
+            return arr1;
         }
 
-        for (int i = 0; i < n; i++) {
-            int count = 1; // count nums[i] itself
-            for (int j = i + 1; j < n; j++) {
-                if (nums[i] == nums[j]) {
-                    count++;
-                }
+        for (int i = 0; i < n - 1; i++) {
+            if (nums[i] == nums[i + 1]) {
+                count++;
+            } else {
+                // Reset count when current and next nums are different
+                count = 1;
             }
-            if (count > n / 3 && !mostel.contains(nums[i])) {
-                mostel.add(nums[i]);
+            if (count > n / 3 && !arr1.contains(nums[i])) {  // add only if not already present
+                arr1.add(nums[i]);
             }
         }
 
-        return mostel;
+        return arr1;
     }
 }
